@@ -1,0 +1,48 @@
+:host {
+    display: block;
+    width: 100%;
+}
+.tags {
+    margin-top: 10px;
+    background-color: #f0f3f8;
+    width: 100%;
+    height: 150px;
+    overflow-y: auto;
+    padding: 7px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    .tag {
+        background: #2158f3;
+        color: white;
+        padding: 3px 17px;
+        border-radius: 20px;
+        margin: 4px;
+        font-size: 0.9em;
+        float: left;
+        display: flex;
+        padding-right: 8px;
+        user-select: none;
+        .remove {
+            margin-left: 10px;
+            background-color: #1572bc;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7em;
+            color: rgb(255 255 255 / 86%);
+            padding-bottom: 2px;
+            cursor: pointer;
+        }
+        &.noRemovable {
+            padding-right: 17px !important;
+        }
+    }
+}
+::ng-deep {
+    input {
+        margin-bottom: 0 !important;
+    }
+}

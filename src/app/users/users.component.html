@@ -1,0 +1,105 @@
+<Alert #alert></Alert>
+<Alert #alertRemove></Alert>
+<div class="wrapAddUser cover center" [hidden]="!showAddUser">
+    <div class="addUser animated zoomIn">
+        <div class="btn_close" (click)="showAddUser = false"></div>
+        <div class="content cover" #slider>
+            <div class="pageUser">
+                <div class="wrapPageUser">
+                    <!-- FORM USER  -->
+                    <div class="cover" *ngIf="showAddUser">
+                        <custom_input
+                            [value]="userForEdit ? userForEdit.firstname : ''"
+                            name="Nombre"
+                            nid="firstname"
+                            [change]="changeInput"
+                        ></custom_input>
+                        <custom_input
+                            [value]="userForEdit ? userForEdit.lastname : ''"
+                            name="Apellido"
+                            nid="lastname"
+                            [change]="changeInput"
+                        ></custom_input>
+                        <custom_input
+                            [value]="userForEdit ? userForEdit.email : ''"
+                            name="Correo"
+                            [change]="changeInput"
+                            nid="email"
+                        ></custom_input>
+                        <custom_input
+                            *ngIf="!userForEdit"
+                            name="Contraseña"
+                            nid="pass"
+                            type="password"
+                            [change]="changeInput"
+                        ></custom_input>
+                        <custom_input
+                            *ngIf="!userForEdit"
+                            name="Repetir Contraseña"
+                            nid="pass2"
+                            type="password"
+                            [change]="changeInput"
+                        ></custom_input>
+                    </div>
+                </div>
+                <div class="buttons center">
+                    <button (click)="next()">Siguiente</button>
+                </div>
+            </div>
+            <div class="pageUser">
+                <div class="wrapPageUser">
+                    <!-- FORM USER  -->
+                    <div class="cover" *ngIf="showAddUser">
+                        <custom_input
+                            [value]="userForEdit ? userForEdit.notes : ''"
+                            name="Nota"
+                            type="textarea"
+                            nid="notes"
+                            [change]="changeInput"
+                        ></custom_input>
+                        <Toggle
+                            [value]="userForEdit ? userForEdit.active : true"
+                            name="Activo"
+                            nid="active"
+                            [onchange]="changeInput"
+                        ></Toggle>
+                    </div>
+                </div>
+                <div class="buttons center">
+                    <button class="danger" (click)="back()">volver</button>
+                    <button (click)="next()">Siguiente</button>
+                </div>
+            </div>
+            <div class="pageUser">
+                <div class="wrapPageUser">
+                    <RollsMap
+                        #rolls
+                        *ngIf="showAddUser"
+                        [rolls]="userForEdit ? userForEdit.privileges : null"
+                        class="cover"
+                        [apps]="listApps"
+                    ></RollsMap>
+                </div>
+                <div class="buttons center">
+                    <button class="danger" (click)="back()">volver</button>
+                    <button (click)="done()">aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="add center" (click)="openAddUser()">agregar</div>
+<div class="list cover">
+    <div class="empy cover center animated zoomIn" *ngIf="!users">
+        Cargando Usuarios
+    </div>
+    <CustomTable
+        *ngIf="users"
+        #table_users
+        [search]="true"
+        [lockPosition]="false"
+        [data]="users"
+        [header]="header"
+        [onSelect]="onSelectUser"
+    ></CustomTable>
+</div>

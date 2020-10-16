@@ -1,0 +1,51 @@
+$shadow2: 0 0 43px 0px rgba(82, 82, 125, 0.12);
+$gray: #555555;
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(20, 20, 20, 0.7);
+    z-index: 9999;
+    display: none;
+}
+button {
+    width: 120px !important;
+}
+.alert_window {
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: $shadow2;
+    .grid {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 200px auto;
+    }
+    .info {
+        grid-row-start: 1;
+        height: 100%;
+        p {
+            margin: 0;
+            color: $gray;
+        }
+    }
+    .buttons {
+        grid-row-start: 2;
+        height: auto;
+        justify-content: space-around;
+        // button {
+        //   margin: 15px 2px 0 2px;
+        //   width: 110px;
+        //   background-image: none;
+        // }
+        &.vertical {
+            flex-direction: column;
+            button {
+                width: 100% !important;
+                margin-bottom: 13px;
+            }
+        }
+    }
+}

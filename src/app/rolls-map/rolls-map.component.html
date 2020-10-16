@@ -1,0 +1,66 @@
+<div class="userRolls">
+    <h2>Permisos Usuario:</h2>
+    <div class="list">
+        <div
+            class="app"
+            *ngFor="let app of userRolls"
+            [ngStyle]="{ backgroundColor: app.color }"
+        >
+            <p class="title">{{ app.name }}</p>
+            <div class="rolls flexList">
+                <label
+                    *ngFor="let roll of app.rolls"
+                    class="center"
+                    (click)="removeRoll(app, roll)"
+                >
+                    {{ roll }}
+                    <div class="remove center">✖</div>
+                </label>
+            </div>
+        </div>
+        <div class="cover center" *ngIf="!userRolls.length">
+            <h2 style="text-align: center; opacity: 0.34; margin-right: 80px">
+                NINGÚN <br />
+                PERMISO
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="appsRolls" #slider>
+    <div class="page_roll cover" style="grid-template-rows: min-content auto">
+        <h2>Aplicaciones:</h2>
+        <div class="list">
+            <div
+                class="app"
+                *ngFor="let app of apps"
+                [ngStyle]="{ backgroundColor: app.color }"
+                (click)="openApp(app)"
+            >
+                <p class="title">{{ app.name }}</p>
+                <label class="code"><span>Code:</span> {{ app.code }}</label>
+            </div>
+        </div>
+    </div>
+    <div class="page_roll">
+        <div class="cover wrapAppRolls" *ngIf="select">
+            <div class="info" [ngStyle]="{ backgroundColor: select.color }">
+                <div class="back center" (click)="closeApp()">
+                    <div class="arrow left"></div>
+                </div>
+                <div class="text">
+                    <p class="name">{{ select.name }}</p>
+                    <p class="code"><span>Code:</span>{{ select.code }}</p>
+                </div>
+            </div>
+            <div class="listRolls">
+                <div
+                    class="roll"
+                    *ngFor="let roll of select.rolls"
+                    (click)="addRoll(roll)"
+                >
+                    {{ roll }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

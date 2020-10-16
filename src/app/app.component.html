@@ -1,0 +1,8 @@
+<!-- <p (click)="logout()">refresh</p> -->
+<Alert #alert></Alert>
+<Dashboard
+  *ngIf="showDashboard"
+  id="dashboard"
+  [identity]="identityForDashboard"
+  [onlogout]="onlogout"
+></Dashboard>

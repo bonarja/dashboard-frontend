@@ -1,0 +1,25 @@
+<div class="add center">
+    <div class="cover" style="padding-right: 10px">
+        <custom_input
+            (keydown.enter)="done()"
+            [label]="false"
+            [name]="label || 'tag'"
+            #input
+            [change]="changeInput"
+        >
+        </custom_input>
+    </div>
+    <button (click)="done()">Agregar</button>
+</div>
+<div class="tags">
+    <span
+        class="tag"
+        *ngFor="let item of list; let i = index"
+        [ngClass]="{ noRemovable: !item.removable }"
+    >
+        {{ item.name }}
+        <div *ngIf="item.removable" class="remove center" (click)="remove(i)">
+            ✖
+        </div>
+    </span>
+</div>

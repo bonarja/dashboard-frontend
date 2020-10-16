@@ -1,0 +1,20 @@
+<div class="alert_window">
+    <div class="grid cover">
+        <div class="info center">
+            <p [style.fontSize]="size + 'em'" [innerHTML]="msg"></p>
+        </div>
+        <div
+            class="buttons center wrap"
+            [ngClass]="{ vertical: items.length >= 3 }"
+        >
+            <button
+                *ngFor="let x of items; let i = index"
+                class="mybtn btn2"
+                [style.backgroundColor]="getColor(x.color)"
+                (click)="select(i)"
+            >
+                {{ x.name }}
+            </button>
+        </div>
+    </div>
+</div>

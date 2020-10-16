@@ -1,0 +1,125 @@
+
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.wrap_custom_table {
+    &.search {
+        padding-top: 55px;
+        background-color: white;
+    }
+    .search_input {
+        height: 55px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0 15px 0 15px;
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto 250px 200px;
+        border-bottom-style: solid;
+        border-bottom-color: #dedede;
+        border-width: 1px;
+        // &.grid-x2 {
+        //     grid-template-columns: 250px auto 200px;
+        // }
+        .title {
+            grid-column-start: 1;
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .export {
+            padding-right: 20px;
+            btn {
+                width: 112px;
+                height: 26px;
+                font-size: 0.8em;
+                margin: 0px 5px;
+                ::ng-deep {
+                    p {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    i {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1.2em;
+                        padding-top: 2.5px;
+                        padding-right: 4px;
+                    }
+                }
+            }
+        }
+        custom_input {
+            grid-column-start: 3;
+            width: 200px;
+            ::ng-deep {
+                input {
+                    height: 36px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+::ng-deep {
+    .ag-header-cell,
+    .ag-cell {
+        padding: 0 10px !important;
+    }
+    .ag-row.selected {
+        background-color: #5e81f4;
+        color: white;
+    }
+    .ag-root-wrapper {
+        height: 100%;
+        padding: 10px !important;
+    }
+    .ag-root-wrapper-body {
+        height: 100%;
+    }
+    .ag-root {
+        height: 100%;
+    }
+    .ag-body-horizontal-scroll {
+        height: 17px;
+        max-height: 17px;
+        min-height: 17px;
+        position: absolute;
+        bottom: 0;
+        background: white;
+    }
+    .ag-body-viewport {
+        overflow-y: auto;
+        padding-bottom: 17px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .search_input {
+        grid-template-columns: auto 100px !important;
+        .g1 {
+            grid-template-columns: 100% !important;
+            display: flex;
+            flex-direction: column;
+        }
+        .title {
+            font-size: 0.9em !important;
+            padding-bottom: 5px;
+        }
+        .export {
+            display: flex;
+            justify-content: flex-start;
+        }
+        custom_input {
+            width: 100px !important;
+        }
+        btn {
+            zoom: 0.7;
+        }
+    }
+}

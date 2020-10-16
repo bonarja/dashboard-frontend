@@ -1,0 +1,54 @@
+<p *ngIf="label">{{ labeltext || name || placeholder }}</p>
+<input
+  *ngIf="!select.length && type !== 'textarea'"
+  [attr.placeholder]="placeholder || name"
+  [attr.name]="name"
+  [attr.type]="type"
+  [attr.autocomplete]="autocomplete ? 'on' : 'off'"
+  [(ngModel)]="value"
+  (ngModelChange)="callChange()"
+/>
+<textarea
+  *ngIf="type === 'textarea'"
+  [attr.placeholder]="placeholder || name"
+  [attr.name]="name"
+  [attr.type]="type"
+  [attr.autocomplete]="autocomplete ? 'on' : 'off'"
+  [(ngModel)]="value"
+  (ngModelChange)="callChange()"
+  [ngStyle]="{ maxHeight: height + 'px', minHeight: height + 'px' }"
+></textarea>
+<div
+  class="select"
+  *ngIf="select.length"
+  [attr.name]="name"
+  (click)="openSelect()"
+  [ngClass]="{ open: showOptions }"
+>
+  <div class="info cover center">
+    <p
+      class="placeholder"
+      #selectvalue
+      [ngStyle]="{ opacity: !showSelectValue ? 0.5 : 1 }"
+    >
+      {{ showSelectValue ? showSelectValue : placeholder ? placeholder : name }}
+    </p>
+    <div
+      class="arrow"
+      [ngClass]="{ up: showOptions, down: !showOptions }"
+    ></div>
+  </div>
+  <div class="options cover" *ngIf="showOptions">
+    <ul class="cover animated slideInDown">
+      <li
+        *ngFor="let item of select; let i = index"
+        [attr.num]="i"
+        [attr.value]="item.value || item.name"
+        class="center"
+        (click)="onselect(i)"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+</div>

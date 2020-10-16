@@ -1,0 +1,72 @@
+<Alert #alert></Alert>
+<addDashboard
+    *ngIf="showAdd"
+    [edit]="showAdd !== true ? showAdd : false"
+    [onclose]="closeAdd"
+    [ondone]="onDoneAddDashboard"
+></addDashboard>
+<div class="window animated zoomIn">
+    <div class="header">
+        <div class="back">
+            <div class="center cover" (click)="backMenu()">
+                <img
+                    *ngIf="settingTarget != 'menu'"
+                    class="animated zoomIn"
+                    src="assets/back.svg"
+                    alt=""
+                    width="50%"
+                />
+            </div>
+        </div>
+        <div class="title center">
+            <p *ngIf="settingTarget != 'menu'">{{ title }}</p>
+        </div>
+        <div class="center">
+            <div class="close" (click)="callOnClose()"></div>
+        </div>
+    </div>
+    <div class="content" *ngIf="settingTarget == 'menu'">
+        <div
+            class="card animated zoomIn"
+            *ngFor="let item of list; let i = index"
+            [ngStyle]="{ backgroundColor: item.color }"
+            (click)="open(item.id)"
+        >
+            {{ item.name }}
+        </div>
+    </div>
+
+    <!-- APPS PAGE -->
+    <div class="cover page_apps" *ngIf="settingTarget == 'apps'">
+        <div class="addButton center" (click)="showAdd = true">Agregar</div>
+        <div class="appsList">
+            <div class="app" *ngFor="let item of apps">
+                <div
+                    class="top center"
+                    [ngStyle]="{ backgroundColor: item.color }"
+                >
+                    {{ item.name }}
+                </div>
+                <div class="bottom center">
+                    <div class="options cover center">
+                        <div class="btn center danger" (click)="remove(item)">
+                            eliminar
+                        </div>
+                        <div class="btn center" (click)="edit(item)">
+                            editar
+                        </div>
+                    </div>
+                    <div>
+                        <p class="code">{{ item.code }}</p>
+                        <p class="url">{{ item.url }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USERS PAGE -->
+    <div class="cover page_users" *ngIf="settingTarget == 'users'">
+        <Users class="cover" [apps]="apps"></Users>
+    </div>
+</div>

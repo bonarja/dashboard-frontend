@@ -1,0 +1,94 @@
+<!-- <Alert #alert [action]="doneRemove"></Alert> -->
+<div class="addNew cover center">
+    <div #slider class="windowAdd center y slider animated zoomIn">
+        <div class="btn_close" (click)="callOnClose()"></div>
+        <div class="page1 add_page">
+            <div class="wrapPage">
+                <div
+                    class="preview center"
+                    [ngStyle]="{
+                        backgroundColor: dataForm.color || initialColor
+                    }"
+                >
+                    {{ dataForm.name }}
+                </div>
+                <custom_input
+                    name="Nombre"
+                    [value]="dataForm.name"
+                    [change]="changeInput"
+                    nid="name"
+                    #input_name
+                ></custom_input>
+                <div class="code" *ngIf="this.edit">
+                    <label>Código:</label>
+                    <p>{{ this.edit.code }}</p>
+                </div>
+                <custom_input
+                    *ngIf="!this.edit"
+                    #input_code
+                    name="Código"
+                    nid="code"
+                    [change]="changeInput"
+                ></custom_input>
+                <label>Color</label>
+                <color-slider
+                    style="
+                        width: 100%;
+                        margin-bottom: 48px;
+                        display: block;
+                        margin-top: 12px;
+                    "
+                    [color]="initialColor"
+                    (onChangeComplete)="changeInput($event)"
+                ></color-slider>
+                <custom_input
+                    #input_url
+                    name="Url"
+                    [value]="dataForm.url"
+                    [change]="changeInput"
+                ></custom_input>
+            </div>
+            <div class="buttons center one">
+                <button (click)="next()">siguiente</button>
+            </div>
+        </div>
+
+        <div class="page2 add_page">
+            <div class="wrapPage">
+                <h3 class="title">Visible para usuarios con:</h3>
+                <Toggle
+                    name="Xstore"
+                    nid="xstore"
+                    [value]="this.dataForm.xstore"
+                    [onchange]="changeInput"
+                ></Toggle>
+                <br />
+                <Toggle
+                    name="Mismo permiso"
+                    nid="selfroll"
+                    [value]="this.dataForm.selfroll"
+                    [onchange]="changeInput"
+                ></Toggle>
+            </div>
+            <div class="buttons center">
+                <button class="danger" (click)="prev()">
+                    volver
+                </button>
+                <button (click)="next()">siguiente</button>
+            </div>
+        </div>
+
+        <div class="page3 add_page">
+            <div class="wrapPage">
+                <h3 class="title">Roles disponibles en {{ dataForm.name }}:</h3>
+                <TagsManagement label="Roll" #rolls></TagsManagement>
+            </div>
+            <div class="buttons center">
+                <button class="danger" (click)="prev()">
+                    volver
+                </button>
+                <button (click)="callOnDone()">aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

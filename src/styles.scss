@@ -1,0 +1,171 @@
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-material.css";
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f3f8;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box !important;
+  font-family: sans-serif;
+}
+app-root {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+button {
+  background: #2196f3;
+  border-style: none;
+  color: white;
+  height: 35px;
+  padding: 0 30px;
+  width: 130px;
+  text-transform: uppercase;
+  user-select: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bolder;
+  outline-color: transparent;
+  outline-style: none;
+  transition: all ease 200ms;
+  &:active {
+    transform: scale(0.9);
+  }
+  &.danger {
+    background-color: #ff6b6b;
+  }
+}
+.centerText {
+  text-align: center;
+}
+div {
+  display: block;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  height: 5px;
+  background-color: #6b76cb;
+}
+.cover {
+  width: 100%;
+  height: 100%;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.y {
+    flex-direction: column;
+  }
+}
+.flexList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+*[hidden] {
+  display: none !important;
+}
+Dashboard#dashboard {
+  &.dark {
+    .sidebar {
+      background-color: #2c2c2c;
+      #time {
+        color: #40c8a7;
+      }
+      .card {
+        background-color: #232323;
+        p {
+          color: #6f6f73;
+        }
+      }
+      .logo .wrap {
+        background-color: #232323;
+        img {
+          display: none;
+        }
+        img.logoDark {
+          display: block;
+        }
+      }
+    }
+    .content {
+      background-color: #232323;
+      .item {
+        .item_top {
+          opacity: 0.9;
+        }
+        .item_bottom {
+          // background-color: #464950;
+          background-color: #3e3e3e;
+          color: white;
+        }
+      }
+    }
+    .window {
+      background-color: #2c2c2c;
+    }
+    input:checked + .slider {
+      background-color: #6f7adc !important;
+    }
+    .windowAdd {
+      background-color: #313131 !important;
+    }
+    app-settings .list {
+      background-color: #2c2c2c !important;
+    }
+    .alert_window {
+      background-color: #2d2d2d !important;
+      .info p {
+        color: white !important;
+      }
+    }
+    .wrapList .item {
+      border-color: #444444 !important;
+      &.select {
+        background-color: #151515 !important;
+      }
+      .info {
+        .name {
+          color: white !important;
+        }
+      }
+    }
+  }
+}
+
+.animated.zoomIn {
+  animation-duration: 250ms;
+}
+.arrow {
+  border: solid;
+  border-color: black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  &.right {
+    transform: rotate(-45deg);
+  }
+
+  &.left {
+    transform: rotate(135deg);
+  }
+
+  &.up {
+    transform: rotate(-135deg);
+  }
+
+  &.down {
+    transform: rotate(45deg);
+  }
+}

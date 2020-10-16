@@ -1,0 +1,70 @@
+<app-settings
+    *ngIf="showSettings && data"
+    [onclose]="onCloseSettings"
+    [apps]="data"
+></app-settings>
+<div class="content">
+    <div class="cover center" *ngIf="!data">
+        <Loading></Loading>
+    </div>
+    <div class="wrapContent cover" *ngIf="identity && data">
+        <a
+            *ngFor="let x of data; let i = index"
+            class="item animated zoomIn"
+            [attr.num]="i"
+            [attr.href]="x.url"
+            target="_BLANK"
+            [style]="{ animationDelay: 50 * i + 'ms' }"
+        >
+            <div
+                class="item_top center y"
+                [style]="{ backgroundColor: x.color }"
+            >
+                <!-- <i class="fa fab" *ngIf="x.icon" [ngClass]="'fa-' + x.icon"></i> -->
+                <p class="noIcon">{{ x.name }}</p>
+            </div>
+            <div></div>
+            <div class="item_bottom">
+                <p *ngIf="x.url">
+                    {{ formatUrl(x.url) }}
+                </p>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="sidebar">
+    <img
+        *ngIf="showSettingsButton"
+        class="settings"
+        src="./assets/settings.svg"
+        (click)="toggleSetting()"
+    />
+    <Time></Time>
+    <div class="sidebarContent">
+        <div class="card icon animated zoomIn">
+            <i class="fa fa-moon"></i>
+            <p>Modo Oscuro</p>
+            <Toggle
+                *ngIf="isDarkMode !== null"
+                [onchange]="onChangeToggle"
+                nid="dark"
+                [value]="isDarkMode"
+            ></Toggle>
+            <!-- <label class="switch">
+        <input id="dark" type="checkbox" />
+        <span class="slider round"></span>
+      </label> -->
+        </div>
+    </div>
+    <div class="logo animated slideInUp">
+        <div class="wrap center">
+            <img src="./assets/logo2.png" alt="" />
+            <img class="logoDark" src="./assets/logo.png" alt="" />
+        </div>
+        <div style="width: 100%; margin-top: 10px" class="center">
+            <button style="width: 100%" class="danger" (click)="logout()">
+                Cerrar Sesión
+            </button>
+        </div>
+    </div>
+</div>
